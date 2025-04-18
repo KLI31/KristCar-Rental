@@ -23,3 +23,20 @@ export const POST = async (req: Request) => {
     return new NextResponse("Internal Error", { status: 401 });
   }
 };
+
+export const GET = async () => {
+  try {
+    const cars = await db.car.findMany({
+      where: {
+        isPublish: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return NextResponse.json(cars);
+  } catch (error) {
+    console.log("ERROR CAR =>", error);
+    return new NextResponse("Internal Error", { status: 401 });
+  }
+};

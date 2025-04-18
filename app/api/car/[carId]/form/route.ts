@@ -4,10 +4,11 @@ import { auth } from "@clerk/nextjs/server";
 
 export const PATCH = async (
   req: Request,
-  { params }: { params: { cardId: string } }
+  context: { params: { carId: string } }
 ) => {
   const { userId } = await auth();
-  const { carId } = params;
+  const { carId } = context.params;
+
   const data = await req.json();
 
   try {
