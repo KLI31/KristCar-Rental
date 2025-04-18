@@ -21,7 +21,7 @@ const ButtonEditCar = ({ carData }: ButtonEditCarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
           variant={"outline"}
@@ -38,9 +38,9 @@ const ButtonEditCar = ({ carData }: ButtonEditCarProps) => {
           <DialogTitle>Editar coche</DialogTitle>
           <DialogDescription>
             Aquí podrás editar la información de tu coche.
-            <FormEditCar carData={carData} setOpenDialog={setIsOpen} />
           </DialogDescription>
         </DialogHeader>
+        <FormEditCar carData={carData} setOpenDialog={setIsOpen} />
       </DialogContent>
     </Dialog>
   );

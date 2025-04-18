@@ -5,8 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-
 import {
   Form,
   FormControl,
@@ -24,56 +22,80 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { UploadButton } from "@/utils/uploadthing";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FormAddCarProps } from "./FormAddCar.types";
 import { useToast } from "@/hooks/use-toast";
+import { useUserCar } from "@/hooks/useUserCar";
+import Image from "next/image";
 
 const FormAddCar = ({ openDialog }: FormAddCarProps) => {
   const [photoUploaded, setPhotoUploaded] = useState(false);
+  const inputFieldRef = useRef<HTMLInputElement>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       cv: "",
-      transmission: "",
+      transmission: "manual",
       people: "",
       photo: "",
-      engine: "",
-      type: "",
+      engine: "gasoil",
+      type: "sedan",
       priceDay: "",
       isPublish: false,
     },
   });
   const { toast } = useToast();
-  const router = useRouter();
-
-  console.log(form.getValues());
-
-  console.log("Error =>", form.formState.errors);
+  const { mutate } = useUserCar();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     openDialog(false);
     try {
       await axios.post("/api/car", values);
+      await mutate();
       toast({
         title: "Car created ✅",
         description: "The car has been created succesfully",
+        duration: 2000,
       });
-      router.refresh();
+      form.reset();
+      setPhotoUploaded(false);
     } catch (error) {
       console.log("Error =>", error);
       toast({
         title: "Error",
         description: "Error creating the car",
         variant: "destructive",
+        duration: 2000,
       });
     }
   };
 
   const { isValid } = form.formState;
 
-  console.log(form.formState);
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      try {
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: reader.result }),
+        });
+        if (!res.ok) throw new Error("Upload failed");
+        const data = await res.json();
+        form.setValue("photo", data.url);
+        setPhotoUploaded(true);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <Form {...form}>
@@ -213,22 +235,36 @@ const FormAddCar = ({ openDialog }: FormAddCarProps) => {
               <FormItem>
                 <FormLabel>Car Image</FormLabel>
                 <FormControl>
-                  {photoUploaded ? (
-                    <p>Image Upload sussesfully</p>
-                  ) : (
-                    <UploadButton
-                      className="rounded-lg bg-slate-600/20 text-slate-800 outline-dotted outline-2"
-                      {...field}
-                      endpoint="photo"
-                      onClientUploadComplete={(res) => {
-                        form.setValue("photo", res?.[0]?.url);
-                        setPhotoUploaded(true);
-                      }}
-                      onUploadError={(error: Error) => {
-                        console.error(error);
-                      }}
+                  <div
+                    className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-blue-400 transition"
+                    onClick={() => inputFieldRef.current?.click()}
+                  >
+                    {form.watch("photo") ? (
+                      <Image
+                        width={200}
+                        height={200}
+                        src={form.watch("photo")}
+                        alt="Previsualización"
+                        className="w-full h-40 object-cover rounded mb-2"
+                      />
+                    ) : (
+                      <span className="text-gray-400 mb-2">
+                        Haz clic o arrastra una imagen aquí
+                      </span>
+                    )}
+                    <input
+                      type="file"
+                      ref={inputFieldRef}
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleImageUpload}
                     />
-                  )}
+                    {photoUploaded && (
+                      <p className="text-green-600 text-sm mt-2">
+                        Imagen subida correctamente
+                      </p>
+                    )}
+                  </div>
                 </FormControl>
               </FormItem>
             )}
@@ -248,7 +284,7 @@ const FormAddCar = ({ openDialog }: FormAddCarProps) => {
           />
         </div>
         <Button type="submit" className="w-full mt-5" disabled={!isValid}>
-          Create car
+          Crear tu vehiculo
         </Button>
       </form>
     </Form>

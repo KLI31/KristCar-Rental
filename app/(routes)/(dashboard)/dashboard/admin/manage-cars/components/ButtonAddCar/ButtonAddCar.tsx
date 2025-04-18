@@ -17,20 +17,19 @@ const ButtonAddCar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant={"outline"} onClick={() => setIsOpen(true)}>
-          Add new car
-          <PlusCircle className=" ml-2" />
+          Añadir un nuevo vehiculo
+          <PlusCircle />
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogTitle>Add new car</DialogTitle>
+        <DialogTitle>Añade tu nuevo vehiculo</DialogTitle>
         <DialogHeader>
-          <DialogDescription>
-            <FormAddCar openDialog={setIsOpen} />
-          </DialogDescription>
+          <DialogDescription></DialogDescription>
         </DialogHeader>
+        <FormAddCar openDialog={setIsOpen} />
       </DialogContent>
     </Dialog>
   );

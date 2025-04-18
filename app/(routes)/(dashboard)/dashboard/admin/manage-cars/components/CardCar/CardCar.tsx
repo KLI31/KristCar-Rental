@@ -7,33 +7,53 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import ButtonEditCar from "./ButtonEditCar/ButtonEditCar";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 
 type CardCarProps = {
   car: Car;
+  mutate: () => void;
 };
 
-export const CardCar = ({ car }: CardCarProps) => {
+export const CardCar = ({ car, mutate }: CardCarProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const router = useRouter();
   const { toast } = useToast();
 
   const handleDeleteCar = async (carId: string) => {
     try {
       await axios.delete(`/api/car/${carId}`);
       toast({
-        title: "Vehiculo eliminado",
+        title: "Vehiculo eliminado ✖️",
         description: "El vehiculo se ha eliminado correctamente",
-        variant: "success",
       });
-      router.refresh();
+      mutate();
     } catch (error) {
       console.log("ERROR DELETE CAR =>", error);
       toast({
         title: "Error al eliminar el vehiculo",
         description: "Ocurrio un error al eliminar el carro",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handlePublishCar = async (publish: boolean) => {
+    try {
+      await axios.patch(`/api/car/${car.id}`, {
+        isPublish: publish,
+      });
+      toast({
+        title: publish ? "Vehiculo publicado 🚀" : "Vehiculo despublicado 🚀",
+        description: publish
+          ? "El vehiculo se ha publicado correctamente"
+          : "El vehiculo se ha despublicado correctamente",
+      });
+      mutate();
+    } catch (error) {
+      console.log("ERROR PUBLISH CAR =>", error);
+      toast({
+        title: "Error al publicar el vehiculo",
+        description: "Ocurrio un error al publicar el carro",
         variant: "destructive",
       });
     }
@@ -71,11 +91,11 @@ export const CardCar = ({ car }: CardCarProps) => {
 
       <div className="p-4">
         <div className="mb-3">
-          <h3 className="text-xl font-semibold text-gray-800 line-clamp-2 min-h-[3.5rem]">
+          <h3 className="text-xl font-semibold text-gray-800 line-clamp-2 min-h-[1.5rem]">
             {car.name}
           </h3>
           <div className="flex items-center mt-2">
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-xl font-semibold text-gray-900">
               {car.priceDay}$
             </span>
             <span className="text-gray-500 ml-1">/día</span>
@@ -123,14 +143,24 @@ export const CardCar = ({ car }: CardCarProps) => {
           <ButtonEditCar carData={car} />
         </div>
 
-        <Button
-          className="mt-3 w-full transition-colors"
-          variant={car.isPublish ? "outline" : "default"}
-          onClick={() => console.log("Publicar/Despublicar")}
-        >
-          {car.isPublish ? "Despublicar" : "Publicar"}
-          <Upload className="h-4 w-4 ml-2" strokeWidth={1.5} />
-        </Button>
+        {car.isPublish ? (
+          <Button
+            className="mt-3 w-full transition-colors"
+            variant={"outline"}
+            onClick={() => handlePublishCar(false)}
+          >
+            Despublicar
+            <Upload className="h-4 w-4 ml-2" strokeWidth={1.5} />
+          </Button>
+        ) : (
+          <Button
+            className="mt-3 w-full transition-colors"
+            onClick={() => handlePublishCar(true)}
+          >
+            Publicar
+            <Upload className="h-4 w-4 ml-2" strokeWidth={1.5} />
+          </Button>
+        )}
       </div>
     </div>
   );
