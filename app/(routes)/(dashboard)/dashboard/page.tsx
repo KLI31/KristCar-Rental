@@ -1,13 +1,15 @@
-import React from "react";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import DasboardContent from "./admin/manage-cars/components/DasboardContent";
 
-const DashboardPage = () => {
-  return (
-    <div>
-      <div className="flex justify-between">
-        <h2 className="text-2xl font-bold">List of cars</h2>
-      </div>
-    </div>
-  );
+const DashboardPage = async () => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return redirect("/");
+  }
+
+  return <DasboardContent />;
 };
 
 export default DashboardPage;
