@@ -4,19 +4,19 @@ export const dataGeneralSidebar = [
   {
     id: 1,
     icon: Car,
-    label: "Cars",
+    label: "Vehiculos disponibles",
     href: "/dashboard",
   },
   {
     id: 2,
     icon: Calendar,
-    label: "Cars resevations",
-    href: "/dashboard/reserves",
+    label: "Reservar vehiculo",
+    href: "/reserves",
   },
   {
     id: 3,
     icon: Heart,
-    label: "My cars",
+    label: "Mis vehiculos favoritos",
     href: "/loved-cars",
   },
 ];
@@ -25,13 +25,13 @@ export const dataAdminSidebar = [
   {
     id: 1,
     icon: Car,
-    label: "Manage your cars",
+    label: "Gestiona tus vehiculos",
     href: "/dashboard/admin/manage-cars",
   },
   {
     id: 2,
     icon: Calendar,
-    label: "All reservations",
+    label: "Todas las reservas",
     href: "/admin/all-reservations",
   },
 ];
