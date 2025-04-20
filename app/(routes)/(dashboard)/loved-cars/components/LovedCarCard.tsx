@@ -21,23 +21,24 @@ const LovedCarCard = ({ cars }: LovedCarCardProps) => {
     cars;
 
   return (
-    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] h-full flex flex-col">
       <div className="relative overflow-hidden">
         <Image
           src={photo}
           alt={name}
           width={400}
+          loading="lazy"
           priority={false}
           height={300}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 hover:scale-105 w-full h-60"
-          unoptimized
         />
         <Badge className="absolute right-3 top-3 bg-primary/90 text-primary-foreground">
           {type.toUpperCase()}
         </Badge>
       </div>
 
-      <CardHeader className="pb-2 pt-4">
+      <CardHeader className="pb-2 pt-4 flex-shrink-0">
         <div className="flex items-start justify-between">
           <h3 className="font-medium line-clamp-2 text-lg">{name}</h3>
           <div className="ml-2 text-lg font-bold text-primary">

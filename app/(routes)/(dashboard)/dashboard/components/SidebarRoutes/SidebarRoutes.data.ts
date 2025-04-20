@@ -32,6 +32,6 @@ export const dataAdminSidebar = [
     id: 2,
     icon: Calendar,
     label: "Todas las reservas",
-    href: "/admin/all-reservations",
+    href: "/dashboard/admin/reserves-admin",
   },
 ];

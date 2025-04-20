@@ -10,12 +10,12 @@ const ListLovedCars = () => {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-      <div className="mt-6">
+    <div className="container mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <>
         {loveCars.map((car) => (
           <LovedCarCard cars={car} key={car.id} />
         ))}
-      </div>
+      </>
     </div>
   );
 };
