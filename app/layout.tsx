@@ -10,8 +10,9 @@ const outFit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Rental card",
-  description: "Course rental card with Nextjs",
+  title: "KristCar - Alquiler de Vehículos",
+  description:
+    "La mejor plataforma para alquilar vehículos de lujo y económicos",
 };
 
 export default function RootLayout({
@@ -22,10 +23,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${outFit.className}`}>
+        <body className={`${outFit.className} overflow-x-hidden`}>
           <NextTopLoader color="#000" />
-
-          {children}
+          <div className="w-full max-w-full">{children}</div>
           <Toaster />
         </body>
       </html>
