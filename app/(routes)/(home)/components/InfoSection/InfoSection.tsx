@@ -21,7 +21,7 @@ const InfoSection = () => {
 
   return (
     <section className="w-full py-16 bg-white">
-      <div className="container mx-auto flex items-center justify-center">
+      <div className="container mx-auto flex items-center justify-center md:justify-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {stats.map((stat, index) => (
             <div key={index} className="relative p-10 flex flex-col">

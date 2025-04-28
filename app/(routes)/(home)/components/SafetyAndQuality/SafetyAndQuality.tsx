@@ -18,9 +18,6 @@ const SafetyAndQuality = () => {
 
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Check className="h-4 w-4 text-blue-600" />
-                  </div>
                   <p className="text-white">
                     GPS ayuda a evitar distracciones proporcionando indicaciones
                     claras y manos libres.
@@ -28,9 +25,6 @@ const SafetyAndQuality = () => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Check className="h-4 w-4 text-blue-600" />
-                  </div>
                   <p className="text-white">
                     Cubre los costos médicos para ti y tus pasajeros en caso de
                     accidente.
@@ -38,9 +32,6 @@ const SafetyAndQuality = () => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Check className="h-4 w-4 text-blue-600" />
-                  </div>
                   <p className="text-white">
                     Confirmamos que las características esenciales como airbags,
                     cinturones de seguridad y herramientas de emergencia estén

@@ -32,7 +32,7 @@ const AppSection = () => {
               </p>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
+                <div className="flex  gap-3">
                   <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center">
                     <Check className="h-4 w-4 text-blue-600" />
                   </div>
@@ -41,7 +41,7 @@ const AppSection = () => {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex  gap-3">
                   <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center">
                     <Check className="h-4 w-4 text-blue-600" />
                   </div>
@@ -50,7 +50,7 @@ const AppSection = () => {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex  gap-3">
                   <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center">
                     <Check className="h-4 w-4 text-blue-600" />
                   </div>
@@ -61,7 +61,7 @@ const AppSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 pt-4">
+              <div className="">
                 <a href="#" className="transition-transform hover:scale-105">
                   <Image
                     src="/google-play.webp"
