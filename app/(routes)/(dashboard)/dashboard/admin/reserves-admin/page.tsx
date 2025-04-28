@@ -3,12 +3,13 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import TableReservesAdmin from "./components/TableReservesAdmin";
 import SectionTitle from "@/components/Shared/SectionTitle/SectionTitle";
+import { isAdministrator } from "@/lib/isAdministrator";
 
 const AllReservationsPage = async () => {
   const { userId } = await auth();
   const user = await currentUser();
 
-  if (!userId || !user) {
+  if (!userId || !user || !isAdministrator(userId)) {
     return redirect("/sign-in");
   }
 
