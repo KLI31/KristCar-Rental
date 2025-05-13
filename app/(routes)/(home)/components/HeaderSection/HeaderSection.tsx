@@ -6,7 +6,7 @@ export default function HeaderSection() {
   return (
     <RevealSection
       delay={0.1}
-      position="left"
+      position="bottom"
       className="relative w-full h-screen"
     >
       <Navbar />

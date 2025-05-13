@@ -5,7 +5,10 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { RevealSectionProps } from "./revealSection.types";
 import { useEffect, useRef } from "react";
 
-export const fadeIn = (position: string, delay: number) => {
+export const fadeIn = (
+  position: "bottom" | "left" | undefined,
+  delay: number | undefined
+) => {
   return {
     visible: {
       y: 0,
@@ -14,13 +17,13 @@ export const fadeIn = (position: string, delay: number) => {
       transition: {
         type: "tween",
         duration: 1.4,
-        delay: delay ? delay : 0.5,
+        delay: delay ?? 0.5,
         ease: [0.25, 0.25, 0.25, 0.75],
       },
     },
     hidden: {
       y: position === "bottom" ? -80 : 0,
-      x: position === "right" ? 80 : 0,
+      x: position === "left" ? 80 : 0,
       opacity: 0,
       transition: {
         type: "tween",

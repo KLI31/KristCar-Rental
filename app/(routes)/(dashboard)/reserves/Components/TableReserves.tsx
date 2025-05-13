@@ -15,8 +15,12 @@ import { Badge } from "@/components/ui/badge";
 
 const TableReserves = ({ orders }: TableReservesProps) => {
   const totalAmount = useMemo(() => {
-    return orders.reduce((acc, order) => acc + Number(order.totalAmount), 0);
+    return orders
+      .filter((order) => order.status === "confirmed")
+      .reduce((acc, order) => acc + Number(order.totalAmount), 0);
   }, [orders]);
+
+  console.log(orders);
 
   return (
     <Table>

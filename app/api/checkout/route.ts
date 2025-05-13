@@ -10,18 +10,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-export async function POST(
-  req: Request,
-  params: {
-    params: {
-      carId: string;
-      priceData: string;
-      startDate: Date;
-      endDate: Date;
-      carName: string;
-    };
-  }
-) {
+export async function POST(req: Request) {
   const { userId } = await auth();
   const { carId, priceDay, startDate, endDate, carName, image } =
     await req.json();
@@ -64,7 +53,7 @@ export async function POST(
       carId,
       carName: carName,
       userId: userId,
-      status: "confirmed",
+      status: "pending",
       totalAmount: totalPrice.toString(),
       orderDate: startDate,
       orderEndDate: endDate,
