@@ -33,20 +33,19 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  context: { params: { carId: string } }
+  { params }: { params: Promise<{ carId: string }> }
 ) {
-  const { carId } = context.params;
+  const { carId } = await params;
+
   const { userId } = await auth();
+  if (!userId) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
 
   try {
-    if (!userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
     const deletedCar = await db.car.delete({
       where: { id: carId },
     });
-
     return NextResponse.json(deletedCar);
   } catch (error) {
     console.error("ERROR DELETE CAR =>", error);
