@@ -4,9 +4,9 @@ import { auth } from "@clerk/nextjs/server";
 
 export async function PATCH(
   req: Request,
-  context: { params: { carId: string } }
+  { params }: { params: Promise<{ carId: string }> }
 ) {
-  const { carId } = context.params;
+  const { carId } = await params;
   const { userId } = await auth();
   const { isPublish } = await req.json();
 
