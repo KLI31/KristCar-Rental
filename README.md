@@ -1,33 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KristCar Rental 🚗
 
-## Getting Started
+¡Bienvenido a KristCar Rental! Este es un proyecto de aplicación web para el alquiler de coches, creado con el objetivo de mejorar y demostrar habilidades en el desarrollo con Next.js y TypeScript.
 
-First, run the development server:
+## 📝 Descripción del Proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+KristCar Rental es una plataforma moderna y fácil de usar que permite a los usuarios explorar un catálogo de vehículos, ver sus detalles y simular el proceso de alquiler. El proyecto está enfocado en crear una experiencia de usuario fluida y un código limpio, escalable y bien estructurado.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Características Principales
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   **Catálogo de Vehículos:** Explora una amplia gama de coches disponibles para alquilar.
+-   **Búsqueda y Filtros:** Encuentra el coche perfecto utilizando la barra de búsqueda o aplicando filtros.
+-   **Detalles del Vehículo:** Obtén información detallada de cada coche, incluyendo especificaciones, precio por día y más.
+-   **Diseño Responsivo:** Interfaz completamente adaptable para una experiencia de usuario óptima en ordenadores, tabletas y móviles.
+-   **Interfaz Moderna:** Diseño limpio y atractivo construido con componentes reutilizables.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tecnologías Utilizadas
 
-## Learn More
+-   **[Next.js](https://nextjs.org/):** Framework de React para renderizado del lado del servidor (SSR) y generación de sitios estáticos (SSG).
+-   **[TypeScript](https://www.typescriptlang.org/):** Superset de JavaScript que añade tipado estático para un desarrollo más robusto.
+-   **[React](https://reactjs.org/):** Biblioteca para construir interfaces de usuario.
+-   **[CSS Modules / Tailwind CSS](https://tailwindcss.com/):** (O la herramienta de estilos que uses) Para un estilizado eficiente y mantenible.
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Cómo Empezar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno de desarrollo local.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerrequisitos
+
+Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 18.x o superior).
+
+### Instalación
+
+1.  **Clona el repositorio:**
+    ```bash
+    git clone https://github.com/KLI31/KristCar-Rental.git
+    ```
+
+2.  **Navega al directorio del proyecto:**
+    ```bash
+    cd KristCar-Rental
+    ```
+
+3.  **Instala las dependencias:**
+    ```bash
+    npm install
+    # o si usas yarn
+    # yarn install
+    ```
+
+4.  **Ejecuta el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    # o si usas yarn
+    # yarn dev
+    ```
+
+5.  Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación en funcionamiento.
+
+## 🤝 Contribuciones
+
+Este es un proyecto personal para el aprendizaje, pero si tienes alguna sugerencia o encuentras un error, ¡no dudes en abrir un *issue*!
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
 ## Deploy on Vercel
 
